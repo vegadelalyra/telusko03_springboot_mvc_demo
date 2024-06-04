@@ -1,22 +1,13 @@
-package com.vegadelalyra.SpringBootMVCDemo.model;
+package com.vegadelalyra.SpringBootMVCDemo.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@Entity
-public class Alien {
-
-    @Id
+@Component
+@Scope("prototype")
+public class AlienDTO {
     private int aid;
     private String aname;
-
-    public Alien() {
-    }
-
-    public Alien(int aid, String aname) {
-        this.aid = aid;
-        this.aname = aname;
-    }
 
     public int getAid() {
         return aid;
@@ -36,9 +27,9 @@ public class Alien {
 
     @Override
     public String toString() {
-        return "Alien{" +
+        return "AlienDTO{" +
                 "aid=" + aid +
-                ", aname='" + aname + '\'' +
+                ", name='" + aname + '\'' +
                 '}';
     }
 }

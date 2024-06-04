@@ -5,6 +5,6 @@
     <title>Spring Boot MVC</title>
 </head>
 <body>
-    Result is : ${num3}
+    Result is : ${result}
 </body>
 </html>

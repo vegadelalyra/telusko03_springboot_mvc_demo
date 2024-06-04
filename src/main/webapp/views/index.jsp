@@ -7,10 +7,20 @@
 <body>
     <h1>Hello, Vega de la Lyra!!</h1>
 
-    <form action="addAlien">
+    <form action="addAlien" method="post">
         Enter your id : <input type="text" name="aid"><br>
         Enter your name : <input type="text" name="aname"><br>
         <input type="submit">
     </form>
+    <hr />
+    <form action="getAlien" method="get">
+       Enter your id: <input type="text" name="aid"><br>
+       <input type="submit">
+   </form>
+       <hr />
+       <form action="getAlienByName" method="get">
+          Enter your name: <input type="text" name="aname"><br>
+          <input type="submit">
+      </form>
 </body>
 </html>

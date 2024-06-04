@@ -1,19 +1,16 @@
 package com.vegadelalyra.SpringBootMVCDemo;
 
 import com.vegadelalyra.SpringBootMVCDemo.model.Alien;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    AlienRepository alienRepository;
 
     @ModelAttribute
     public void modelData(Model m) {
@@ -27,17 +24,35 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("add")
-    public String add(@RequestParam("num1") int i, @RequestParam("num2") int j, Model m) {
+    @GetMapping("getAliens")
+    public String getAliens(Model m) {
 
-        int num3 = i + j;
-        m.addAttribute("num3", num3);
+        m.addAttribute("result", alienRepository.findAll());
+
+        return "alienator";
+    }
+
+    @GetMapping("getAlien")
+    public String getAlien(@RequestParam int aid, Model m) {
+
+        m.addAttribute("result", alienRepository.getReferenceById(aid));
 
         return "result";
     }
 
-    @RequestMapping("addAlien")
+    @GetMapping("getAlienByName")
+    public String getAlienByName(@RequestParam String aname, Model m) {
+
+        m.addAttribute("result", alienRepository.find(aname));
+
+        return "result";
+    }
+
+
+    @PostMapping(value="addAlien")
     public String addAlien(@ModelAttribute Alien a) {
+
+        alienRepository.save(a);
         return "alienator";
     }
 }
