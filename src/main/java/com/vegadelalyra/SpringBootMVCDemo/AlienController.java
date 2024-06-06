@@ -20,7 +20,7 @@ public class AlienController {
 
     @GetMapping(path="aliens", produces = {"application/xml"})
     public List<Alien> getAliens() {
-
+        System.out.println("get aliens method called!");
         return alienRepository.findAll();
     }
 
